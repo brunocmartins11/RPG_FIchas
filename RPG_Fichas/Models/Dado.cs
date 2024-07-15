@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPG_Fichas.Models
 {
-    internal class Dado
+    public class Dado
     {
         public string Output { get; set; }
     }

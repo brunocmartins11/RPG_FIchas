@@ -14,5 +14,10 @@ namespace RPG_Fichas
             var rolarDados = new frmRolagemDados();
             rolarDados.ShowDialog();
         }
+
+        private void btnEntrar_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -33,6 +33,7 @@
             label1 = new Label();
             label2 = new Label();
             btnRolagem = new Button();
+            btnEntrar = new Button();
             SuspendLayout();
             // 
             // txtLogin
@@ -78,19 +79,30 @@
             btnRolagem.TabIndex = 4;
             btnRolagem.Text = "Rolagem";
             btnRolagem.UseVisualStyleBackColor = true;
-            btnRolagem.Click += this.btnRolagem_Click;
+            btnRolagem.Click += btnRolagem_Click;
             // 
-            // Form_Inicial
+            // btnEntrar
+            // 
+            btnEntrar.Location = new Point(338, 317);
+            btnEntrar.Name = "btnEntrar";
+            btnEntrar.Size = new Size(92, 23);
+            btnEntrar.TabIndex = 5;
+            btnEntrar.Text = "Entrar";
+            btnEntrar.UseVisualStyleBackColor = true;
+            btnEntrar.Click += btnEntrar_Click;
+            // 
+            // frmInicial
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnEntrar);
             Controls.Add(btnRolagem);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(txtSenha);
             Controls.Add(txtLogin);
-            Name = "Form_Inicial";
+            Name = "frmInicial";
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
@@ -103,5 +115,6 @@
         private Label label1;
         private Label label2;
         private Button btnRolagem;
+        private Button btnEntrar;
     }
 }

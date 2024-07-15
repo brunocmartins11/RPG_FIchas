@@ -38,7 +38,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(44, 116);
+            label1.Location = new Point(138, 117);
             label1.Name = "label1";
             label1.Size = new Size(127, 15);
             label1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(44, 186);
+            label2.Location = new Point(120, 187);
             label2.Name = "label2";
             label2.Size = new Size(167, 15);
             label2.TabIndex = 1;
@@ -55,21 +55,21 @@
             // 
             // txtQuantidade
             // 
-            txtQuantidade.Location = new Point(47, 134);
+            txtQuantidade.Location = new Point(141, 135);
             txtQuantidade.Name = "txtQuantidade";
             txtQuantidade.Size = new Size(124, 23);
             txtQuantidade.TabIndex = 2;
             // 
             // txtLados
             // 
-            txtLados.Location = new Point(47, 204);
+            txtLados.Location = new Point(141, 205);
             txtLados.Name = "txtLados";
             txtLados.Size = new Size(124, 23);
             txtLados.TabIndex = 3;
             // 
             // btnRolagem
             // 
-            btnRolagem.Location = new Point(47, 274);
+            btnRolagem.Location = new Point(141, 275);
             btnRolagem.Name = "btnRolagem";
             btnRolagem.Size = new Size(124, 23);
             btnRolagem.TabIndex = 4;
@@ -77,7 +77,7 @@
             btnRolagem.UseVisualStyleBackColor = true;
             btnRolagem.Click += btnRolagem_Click;
             // 
-            // Form_RolagemDados
+            // frmRolagemDados
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -87,7 +87,7 @@
             Controls.Add(txtQuantidade);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "Form_RolagemDados";
+            Name = "frmRolagemDados";
             Text = "Form_RolagemDados";
             ResumeLayout(false);
             PerformLayout();
