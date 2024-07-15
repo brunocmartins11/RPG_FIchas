@@ -1,0 +1,17 @@
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\bin\Debug\net8.0-windows\RPG_Fichas.exe
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\bin\Debug\net8.0-windows\RPG_Fichas.deps.json
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\bin\Debug\net8.0-windows\RPG_Fichas.runtimeconfig.json
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\bin\Debug\net8.0-windows\RPG_Fichas.dll
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\bin\Debug\net8.0-windows\RPG_Fichas.pdb
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.frmInicial.resources
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.frmRolagemDados.resources
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.csproj.GenerateResource.cache
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.AssemblyInfoInputs.cache
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.AssemblyInfo.cs
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.csproj.CoreCompileInputs.cache
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.dll
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\refint\RPG_Fichas.dll
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.pdb
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.genruntimeconfig.cache
+C:\Users\bruno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\ref\RPG_Fichas.dll
