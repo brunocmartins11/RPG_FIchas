@@ -17,7 +17,17 @@ namespace RPG_Fichas
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void frmInicial_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
