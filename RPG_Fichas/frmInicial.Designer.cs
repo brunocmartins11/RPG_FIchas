@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInicial));
             txtLogin = new TextBox();
             txtSenha = new TextBox();
             label1 = new Label();
@@ -142,7 +143,7 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.logo;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(74, 85);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(217, 152);
@@ -152,7 +153,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.Title_Sequence__The_Legend_of_Vox_Machina__Prime_Video;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(372, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(768, 758);

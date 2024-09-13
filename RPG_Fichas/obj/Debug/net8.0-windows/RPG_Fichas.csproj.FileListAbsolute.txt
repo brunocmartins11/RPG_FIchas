@@ -20,6 +20,7 @@ C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\bin\Debug\net8.0-windows\R
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\bin\Debug\net8.0-windows\RPG_Fichas.runtimeconfig.json
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\bin\Debug\net8.0-windows\RPG_Fichas.dll
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\bin\Debug\net8.0-windows\RPG_Fichas.pdb
+C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.frmCarregando.resources
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.frmFicha.resources
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.frmInicial.resources
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.frmRolagemDados.resources
