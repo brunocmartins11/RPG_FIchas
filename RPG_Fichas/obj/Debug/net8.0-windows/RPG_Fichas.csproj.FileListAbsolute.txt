@@ -23,6 +23,7 @@ C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\bin\Debug\net8.0-windows\R
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.frmFicha.resources
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.frmInicial.resources
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.frmRolagemDados.resources
+C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.Properties.Resources.resources
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.csproj.GenerateResource.cache
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Aluno\Documents\GitHub\RPG_Fichas\RPG_Fichas\obj\Debug\net8.0-windows\RPG_Fichas.AssemblyInfoInputs.cache
