@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            cbx_raca = new ComboBox();
+            cbx_classe = new ComboBox();
             label8 = new Label();
             numeric_nivel = new NumericUpDown();
             label4 = new Label();
@@ -36,13 +38,11 @@
             txt_xppoints = new TextBox();
             txt_alinhamento = new TextBox();
             label6 = new Label();
-            txt_raca = new TextBox();
             label3 = new Label();
             label2 = new Label();
             txt_nome_jogador = new TextBox();
             txt_antecedente = new TextBox();
             label1 = new Label();
-            txt_classe = new TextBox();
             txt_nome_personagem = new TextBox();
             label7 = new Label();
             pictureBox1 = new PictureBox();
@@ -111,6 +111,7 @@
             lbl_forca_salvaguarda = new Label();
             chk_forca = new CheckBox();
             panel17 = new Panel();
+            btnCadastrar = new Button();
             panel34 = new Panel();
             lbl_religiao = new Label();
             panel35 = new Panel();
@@ -208,6 +209,8 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(cbx_raca);
+            panel1.Controls.Add(cbx_classe);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(numeric_nivel);
             panel1.Controls.Add(label4);
@@ -215,17 +218,35 @@
             panel1.Controls.Add(txt_xppoints);
             panel1.Controls.Add(txt_alinhamento);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(txt_raca);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txt_nome_jogador);
             panel1.Controls.Add(txt_antecedente);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(txt_classe);
             panel1.Location = new Point(309, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(576, 182);
             panel1.TabIndex = 0;
+            // 
+            // cbx_raca
+            // 
+            cbx_raca.FormattingEnabled = true;
+            cbx_raca.Items.AddRange(new object[] { "Humano", "Elfo", "Anão", "Halfling" });
+            cbx_raca.Location = new Point(9, 79);
+            cbx_raca.Name = "cbx_raca";
+            cbx_raca.Size = new Size(181, 28);
+            cbx_raca.TabIndex = 11;
+            cbx_raca.SelectedIndexChanged += cbx_raca_SelectedIndexChanged;
+            // 
+            // cbx_classe
+            // 
+            cbx_classe.FormattingEnabled = true;
+            cbx_classe.Items.AddRange(new object[] { "Guerreiro", "Mago", "Ladino", "Monge", "Feiticeiro", "Druida", "Bruxo", "Bardo", "Barbaro", "Paladino", "Patrulheiro", "Clerigo" });
+            cbx_classe.Location = new Point(9, 9);
+            cbx_classe.Name = "cbx_classe";
+            cbx_classe.Size = new Size(181, 28);
+            cbx_classe.TabIndex = 10;
+            cbx_classe.SelectedIndexChanged += cbx_classe_SelectedIndexChanged;
             // 
             // label8
             // 
@@ -242,6 +263,7 @@
             numeric_nivel.Name = "numeric_nivel";
             numeric_nivel.Size = new Size(65, 27);
             numeric_nivel.TabIndex = 3;
+            numeric_nivel.ValueChanged += numeric_nivel_ValueChanged;
             // 
             // label4
             // 
@@ -286,14 +308,6 @@
             label6.TabIndex = 5;
             label6.Text = "Raça";
             // 
-            // txt_raca
-            // 
-            txt_raca.BackColor = Color.White;
-            txt_raca.Location = new Point(9, 80);
-            txt_raca.Name = "txt_raca";
-            txt_raca.Size = new Size(181, 27);
-            txt_raca.TabIndex = 4;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -336,14 +350,6 @@
             label1.Size = new Size(50, 20);
             label1.TabIndex = 1;
             label1.Text = "Classe";
-            // 
-            // txt_classe
-            // 
-            txt_classe.BackColor = Color.White;
-            txt_classe.Location = new Point(9, 10);
-            txt_classe.Name = "txt_classe";
-            txt_classe.Size = new Size(181, 27);
-            txt_classe.TabIndex = 0;
             // 
             // txt_nome_personagem
             // 
@@ -455,6 +461,8 @@
             txt_carisma.Name = "txt_carisma";
             txt_carisma.Size = new Size(40, 27);
             txt_carisma.TabIndex = 22;
+            txt_carisma.Text = "0";
+            txt_carisma.TextChanged += txt_carisma_TextChanged;
             // 
             // panel7
             // 
@@ -489,6 +497,8 @@
             txt_sabedoria.Name = "txt_sabedoria";
             txt_sabedoria.Size = new Size(40, 27);
             txt_sabedoria.TabIndex = 19;
+            txt_sabedoria.Text = "0";
+            txt_sabedoria.TextChanged += txt_sabedoria_TextChanged;
             // 
             // panel8
             // 
@@ -523,6 +533,8 @@
             txt_inteligencia.Name = "txt_inteligencia";
             txt_inteligencia.Size = new Size(40, 27);
             txt_inteligencia.TabIndex = 16;
+            txt_inteligencia.Text = "0";
+            txt_inteligencia.TextChanged += txt_inteligencia_TextChanged;
             // 
             // panel5
             // 
@@ -557,6 +569,8 @@
             txt_constituicao.Name = "txt_constituicao";
             txt_constituicao.Size = new Size(40, 27);
             txt_constituicao.TabIndex = 13;
+            txt_constituicao.Text = "0";
+            txt_constituicao.TextChanged += txt_constituicao_TextChanged;
             // 
             // panel6
             // 
@@ -591,6 +605,8 @@
             txt_destreza.Name = "txt_destreza";
             txt_destreza.Size = new Size(40, 27);
             txt_destreza.TabIndex = 10;
+            txt_destreza.Text = "0";
+            txt_destreza.TextChanged += txt_destreza_TextChanged;
             // 
             // panel4
             // 
@@ -625,6 +641,8 @@
             txt_forca.Name = "txt_forca";
             txt_forca.Size = new Size(40, 27);
             txt_forca.TabIndex = 7;
+            txt_forca.Text = "0";
+            txt_forca.TextChanged += txt_forca_TextChanged;
             // 
             // panel3
             // 
@@ -979,6 +997,7 @@
             // panel17
             // 
             panel17.BorderStyle = BorderStyle.FixedSingle;
+            panel17.Controls.Add(btnCadastrar);
             panel17.Controls.Add(panel34);
             panel17.Controls.Add(panel35);
             panel17.Controls.Add(panel30);
@@ -1020,6 +1039,16 @@
             panel17.Name = "panel17";
             panel17.Size = new Size(873, 554);
             panel17.TabIndex = 8;
+            // 
+            // btnCadastrar
+            // 
+            btnCadastrar.Location = new Point(317, 268);
+            btnCadastrar.Name = "btnCadastrar";
+            btnCadastrar.Size = new Size(197, 29);
+            btnCadastrar.TabIndex = 48;
+            btnCadastrar.Text = "Cadastrar";
+            btnCadastrar.UseVisualStyleBackColor = true;
+            btnCadastrar.Click += btnCadastrar_Click;
             // 
             // panel34
             // 
@@ -1522,7 +1551,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(896, 822);
+            ClientSize = new Size(896, 892);
             Controls.Add(panel17);
             Controls.Add(panel10);
             Controls.Add(panel9);
@@ -1615,13 +1644,11 @@
 
         private Panel panel1;
         private Label label1;
-        private TextBox txt_classe;
         private Label label4;
         private Label label5;
         private TextBox txt_xppoints;
         private TextBox txt_alinhamento;
         private Label label6;
-        private TextBox txt_raca;
         private Label label3;
         private Label label2;
         private TextBox txt_nome_jogador;
@@ -1751,5 +1778,8 @@
         private TextBox txt_CA;
         private TextBox txt_condicoes;
         private Label label58;
+        private Button btnCadastrar;
+        private ComboBox cbx_raca;
+        private ComboBox cbx_classe;
     }
 }
