@@ -424,9 +424,9 @@
             lbl_proficiencia.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_proficiencia.Location = new Point(197, 290);
             lbl_proficiencia.Name = "lbl_proficiencia";
-            lbl_proficiencia.Size = new Size(37, 28);
+            lbl_proficiencia.Size = new Size(23, 28);
             lbl_proficiencia.TabIndex = 1;
-            lbl_proficiencia.Text = "+1";
+            lbl_proficiencia.Text = "1";
             // 
             // txt_inspiracao
             // 
@@ -434,6 +434,7 @@
             txt_inspiracao.Name = "txt_inspiracao";
             txt_inspiracao.Size = new Size(81, 27);
             txt_inspiracao.TabIndex = 26;
+            txt_inspiracao.Text = "0";
             // 
             // label23
             // 
@@ -461,7 +462,7 @@
             txt_carisma.Name = "txt_carisma";
             txt_carisma.Size = new Size(40, 27);
             txt_carisma.TabIndex = 22;
-            txt_carisma.Text = "0";
+            txt_carisma.Text = "10";
             txt_carisma.TextChanged += txt_carisma_TextChanged;
             // 
             // panel7
@@ -477,9 +478,9 @@
             lbl_carisma_atributo.AutoSize = true;
             lbl_carisma_atributo.Location = new Point(3, 3);
             lbl_carisma_atributo.Name = "lbl_carisma_atributo";
-            lbl_carisma_atributo.Size = new Size(27, 20);
+            lbl_carisma_atributo.Size = new Size(17, 20);
             lbl_carisma_atributo.TabIndex = 0;
-            lbl_carisma_atributo.Text = "+1";
+            lbl_carisma_atributo.Text = "0";
             // 
             // label19
             // 
@@ -497,7 +498,7 @@
             txt_sabedoria.Name = "txt_sabedoria";
             txt_sabedoria.Size = new Size(40, 27);
             txt_sabedoria.TabIndex = 19;
-            txt_sabedoria.Text = "0";
+            txt_sabedoria.Text = "10";
             txt_sabedoria.TextChanged += txt_sabedoria_TextChanged;
             // 
             // panel8
@@ -513,9 +514,9 @@
             lbl_sabedoria_atributo.AutoSize = true;
             lbl_sabedoria_atributo.Location = new Point(3, 3);
             lbl_sabedoria_atributo.Name = "lbl_sabedoria_atributo";
-            lbl_sabedoria_atributo.Size = new Size(27, 20);
+            lbl_sabedoria_atributo.Size = new Size(17, 20);
             lbl_sabedoria_atributo.TabIndex = 0;
-            lbl_sabedoria_atributo.Text = "+1";
+            lbl_sabedoria_atributo.Text = "0";
             // 
             // label21
             // 
@@ -533,7 +534,7 @@
             txt_inteligencia.Name = "txt_inteligencia";
             txt_inteligencia.Size = new Size(40, 27);
             txt_inteligencia.TabIndex = 16;
-            txt_inteligencia.Text = "0";
+            txt_inteligencia.Text = "10";
             txt_inteligencia.TextChanged += txt_inteligencia_TextChanged;
             // 
             // panel5
@@ -549,9 +550,9 @@
             lbl_inteligencia_atributo.AutoSize = true;
             lbl_inteligencia_atributo.Location = new Point(3, 3);
             lbl_inteligencia_atributo.Name = "lbl_inteligencia_atributo";
-            lbl_inteligencia_atributo.Size = new Size(27, 20);
+            lbl_inteligencia_atributo.Size = new Size(17, 20);
             lbl_inteligencia_atributo.TabIndex = 0;
-            lbl_inteligencia_atributo.Text = "+1";
+            lbl_inteligencia_atributo.Text = "0";
             // 
             // label15
             // 
@@ -569,7 +570,7 @@
             txt_constituicao.Name = "txt_constituicao";
             txt_constituicao.Size = new Size(40, 27);
             txt_constituicao.TabIndex = 13;
-            txt_constituicao.Text = "0";
+            txt_constituicao.Text = "10";
             txt_constituicao.TextChanged += txt_constituicao_TextChanged;
             // 
             // panel6
@@ -585,9 +586,9 @@
             lbl_constituicao_atributo.AutoSize = true;
             lbl_constituicao_atributo.Location = new Point(3, 3);
             lbl_constituicao_atributo.Name = "lbl_constituicao_atributo";
-            lbl_constituicao_atributo.Size = new Size(27, 20);
+            lbl_constituicao_atributo.Size = new Size(17, 20);
             lbl_constituicao_atributo.TabIndex = 0;
-            lbl_constituicao_atributo.Text = "+1";
+            lbl_constituicao_atributo.Text = "0";
             // 
             // label17
             // 
@@ -605,7 +606,7 @@
             txt_destreza.Name = "txt_destreza";
             txt_destreza.Size = new Size(40, 27);
             txt_destreza.TabIndex = 10;
-            txt_destreza.Text = "0";
+            txt_destreza.Text = "10";
             txt_destreza.TextChanged += txt_destreza_TextChanged;
             // 
             // panel4
@@ -621,9 +622,9 @@
             lbl_destreza_atributo.AutoSize = true;
             lbl_destreza_atributo.Location = new Point(3, 3);
             lbl_destreza_atributo.Name = "lbl_destreza_atributo";
-            lbl_destreza_atributo.Size = new Size(27, 20);
+            lbl_destreza_atributo.Size = new Size(17, 20);
             lbl_destreza_atributo.TabIndex = 0;
-            lbl_destreza_atributo.Text = "+1";
+            lbl_destreza_atributo.Text = "0";
             // 
             // label13
             // 
@@ -641,7 +642,7 @@
             txt_forca.Name = "txt_forca";
             txt_forca.Size = new Size(40, 27);
             txt_forca.TabIndex = 7;
-            txt_forca.Text = "0";
+            txt_forca.Text = "10";
             txt_forca.TextChanged += txt_forca_TextChanged;
             // 
             // panel3
@@ -657,9 +658,9 @@
             lbl_forca_atributo.AutoSize = true;
             lbl_forca_atributo.Location = new Point(3, 3);
             lbl_forca_atributo.Name = "lbl_forca_atributo";
-            lbl_forca_atributo.Size = new Size(27, 20);
+            lbl_forca_atributo.Size = new Size(17, 20);
             lbl_forca_atributo.TabIndex = 0;
-            lbl_forca_atributo.Text = "+1";
+            lbl_forca_atributo.Text = "0";
             // 
             // label10
             // 
@@ -845,9 +846,9 @@
             lbl_carisma_salvaguarda.AutoSize = true;
             lbl_carisma_salvaguarda.Location = new Point(3, 3);
             lbl_carisma_salvaguarda.Name = "lbl_carisma_salvaguarda";
-            lbl_carisma_salvaguarda.Size = new Size(27, 20);
+            lbl_carisma_salvaguarda.Size = new Size(17, 20);
             lbl_carisma_salvaguarda.TabIndex = 0;
-            lbl_carisma_salvaguarda.Text = "+1";
+            lbl_carisma_salvaguarda.Text = "0";
             // 
             // panel13
             // 
@@ -862,9 +863,9 @@
             lbl_constituicao_salvaguarda.AutoSize = true;
             lbl_constituicao_salvaguarda.Location = new Point(3, 3);
             lbl_constituicao_salvaguarda.Name = "lbl_constituicao_salvaguarda";
-            lbl_constituicao_salvaguarda.Size = new Size(27, 20);
+            lbl_constituicao_salvaguarda.Size = new Size(17, 20);
             lbl_constituicao_salvaguarda.TabIndex = 0;
-            lbl_constituicao_salvaguarda.Text = "+1";
+            lbl_constituicao_salvaguarda.Text = "0";
             // 
             // panel15
             // 
@@ -879,9 +880,9 @@
             lbl_sabedoria_salvaguarda.AutoSize = true;
             lbl_sabedoria_salvaguarda.Location = new Point(3, 3);
             lbl_sabedoria_salvaguarda.Name = "lbl_sabedoria_salvaguarda";
-            lbl_sabedoria_salvaguarda.Size = new Size(27, 20);
+            lbl_sabedoria_salvaguarda.Size = new Size(17, 20);
             lbl_sabedoria_salvaguarda.TabIndex = 0;
-            lbl_sabedoria_salvaguarda.Text = "+1";
+            lbl_sabedoria_salvaguarda.Text = "0";
             // 
             // chk_carisma
             // 
@@ -892,6 +893,7 @@
             chk_carisma.TabIndex = 13;
             chk_carisma.Text = "Carisma";
             chk_carisma.UseVisualStyleBackColor = true;
+            chk_carisma.CheckedChanged += chk_carisma_CheckedChanged;
             // 
             // panel16
             // 
@@ -906,9 +908,9 @@
             lbl_inteligencia_salvaguarda.AutoSize = true;
             lbl_inteligencia_salvaguarda.Location = new Point(3, 3);
             lbl_inteligencia_salvaguarda.Name = "lbl_inteligencia_salvaguarda";
-            lbl_inteligencia_salvaguarda.Size = new Size(27, 20);
+            lbl_inteligencia_salvaguarda.Size = new Size(17, 20);
             lbl_inteligencia_salvaguarda.TabIndex = 0;
-            lbl_inteligencia_salvaguarda.Text = "+1";
+            lbl_inteligencia_salvaguarda.Text = "0";
             // 
             // chk_sabedoria
             // 
@@ -919,6 +921,7 @@
             chk_sabedoria.TabIndex = 12;
             chk_sabedoria.Text = "Sabedoria";
             chk_sabedoria.UseVisualStyleBackColor = true;
+            chk_sabedoria.CheckedChanged += chk_sabedoria_CheckedChanged;
             // 
             // chk_inteligencia
             // 
@@ -929,6 +932,7 @@
             chk_inteligencia.TabIndex = 11;
             chk_inteligencia.Text = "Inteligência";
             chk_inteligencia.UseVisualStyleBackColor = true;
+            chk_inteligencia.CheckedChanged += chk_inteligencia_CheckedChanged;
             // 
             // chk_constituicao
             // 
@@ -939,6 +943,7 @@
             chk_constituicao.TabIndex = 10;
             chk_constituicao.Text = "Constituição";
             chk_constituicao.UseVisualStyleBackColor = true;
+            chk_constituicao.CheckedChanged += chk_constituicao_CheckedChanged;
             // 
             // panel12
             // 
@@ -953,9 +958,9 @@
             lbl_destreza_salvaguarda.AutoSize = true;
             lbl_destreza_salvaguarda.Location = new Point(3, 3);
             lbl_destreza_salvaguarda.Name = "lbl_destreza_salvaguarda";
-            lbl_destreza_salvaguarda.Size = new Size(27, 20);
+            lbl_destreza_salvaguarda.Size = new Size(17, 20);
             lbl_destreza_salvaguarda.TabIndex = 0;
-            lbl_destreza_salvaguarda.Text = "+1";
+            lbl_destreza_salvaguarda.Text = "0";
             // 
             // chk_destreza
             // 
@@ -966,6 +971,7 @@
             chk_destreza.TabIndex = 8;
             chk_destreza.Text = "Destreza";
             chk_destreza.UseVisualStyleBackColor = true;
+            chk_destreza.CheckedChanged += chk_destreza_CheckedChanged;
             // 
             // panel11
             // 
@@ -980,9 +986,9 @@
             lbl_forca_salvaguarda.AutoSize = true;
             lbl_forca_salvaguarda.Location = new Point(3, 3);
             lbl_forca_salvaguarda.Name = "lbl_forca_salvaguarda";
-            lbl_forca_salvaguarda.Size = new Size(27, 20);
+            lbl_forca_salvaguarda.Size = new Size(17, 20);
             lbl_forca_salvaguarda.TabIndex = 0;
-            lbl_forca_salvaguarda.Text = "+1";
+            lbl_forca_salvaguarda.Text = "0";
             // 
             // chk_forca
             // 
@@ -993,6 +999,7 @@
             chk_forca.TabIndex = 0;
             chk_forca.Text = "Força";
             chk_forca.UseVisualStyleBackColor = true;
+            chk_forca.CheckedChanged += chk_forca_CheckedChanged;
             // 
             // panel17
             // 
@@ -1110,6 +1117,7 @@
             chk_religiao.TabIndex = 45;
             chk_religiao.Text = "Religião (INT)";
             chk_religiao.UseVisualStyleBackColor = true;
+            chk_religiao.CheckedChanged += chk_religiao_CheckedChanged;
             // 
             // chk_prestidigitacao
             // 
@@ -1120,6 +1128,7 @@
             chk_prestidigitacao.TabIndex = 45;
             chk_prestidigitacao.Text = "Prestidigitação (DES)";
             chk_prestidigitacao.UseVisualStyleBackColor = true;
+            chk_prestidigitacao.CheckedChanged += chk_prestidigitacao_CheckedChanged;
             // 
             // chk_sobrevivencia
             // 
@@ -1130,6 +1139,7 @@
             chk_sobrevivencia.TabIndex = 47;
             chk_sobrevivencia.Text = "Survival (SAB)";
             chk_sobrevivencia.UseVisualStyleBackColor = true;
+            chk_sobrevivencia.CheckedChanged += chk_sobrevivencia_CheckedChanged;
             // 
             // panel31
             // 
@@ -1174,6 +1184,7 @@
             chk_percepcao.TabIndex = 41;
             chk_percepcao.Text = "Percepção (SAB)";
             chk_percepcao.UseVisualStyleBackColor = true;
+            chk_percepcao.CheckedChanged += chk_percepcao_CheckedChanged;
             // 
             // chk_persuasao
             // 
@@ -1184,6 +1195,7 @@
             chk_persuasao.TabIndex = 43;
             chk_persuasao.Text = "Persuasão (CAR)";
             chk_persuasao.UseVisualStyleBackColor = true;
+            chk_persuasao.CheckedChanged += chk_persuasao_CheckedChanged;
             // 
             // panel33
             // 
@@ -1211,6 +1223,7 @@
             chk_natureza.TabIndex = 39;
             chk_natureza.Text = "Natureza (INT)";
             chk_natureza.UseVisualStyleBackColor = true;
+            chk_natureza.CheckedChanged += chk_natureza_CheckedChanged;
             // 
             // panel26
             // 
@@ -1238,6 +1251,7 @@
             chk_medicina.TabIndex = 37;
             chk_medicina.Text = "Medicina (SAB)";
             chk_medicina.UseVisualStyleBackColor = true;
+            chk_medicina.CheckedChanged += chk_medicina_CheckedChanged;
             // 
             // panel27
             // 
@@ -1282,6 +1296,7 @@
             chk_investigacao.TabIndex = 33;
             chk_investigacao.Text = "Investigação (INT)";
             chk_investigacao.UseVisualStyleBackColor = true;
+            chk_investigacao.CheckedChanged += chk_investigacao_CheckedChanged;
             // 
             // chk_animais
             // 
@@ -1292,6 +1307,7 @@
             chk_animais.TabIndex = 35;
             chk_animais.Text = "L. Animais (SAB)";
             chk_animais.UseVisualStyleBackColor = true;
+            chk_animais.CheckedChanged += chk_animais_CheckedChanged;
             // 
             // panel29
             // 
@@ -1319,6 +1335,7 @@
             chk_intuicao.TabIndex = 31;
             chk_intuicao.Text = "Intuição (SAB)";
             chk_intuicao.UseVisualStyleBackColor = true;
+            chk_intuicao.CheckedChanged += chk_intuicao_CheckedChanged;
             // 
             // panel22
             // 
@@ -1346,6 +1363,7 @@
             chk_intimidacao.TabIndex = 29;
             chk_intimidacao.Text = "Intimidação (CAR)";
             chk_intimidacao.UseVisualStyleBackColor = true;
+            chk_intimidacao.CheckedChanged += chk_intimidacao_CheckedChanged;
             // 
             // panel23
             // 
@@ -1390,6 +1408,7 @@
             chk_furtividade.TabIndex = 25;
             chk_furtividade.Text = "Furtividade (DES)";
             chk_furtividade.UseVisualStyleBackColor = true;
+            chk_furtividade.CheckedChanged += chk_furtividade_CheckedChanged;
             // 
             // chk_historia
             // 
@@ -1400,6 +1419,7 @@
             chk_historia.TabIndex = 27;
             chk_historia.Text = "História (INT)";
             chk_historia.UseVisualStyleBackColor = true;
+            chk_historia.CheckedChanged += chk_historia_CheckedChanged;
             // 
             // panel25
             // 
@@ -1427,6 +1447,7 @@
             chk_enganacao.TabIndex = 23;
             chk_enganacao.Text = "Enganação (CAR)";
             chk_enganacao.UseVisualStyleBackColor = true;
+            chk_enganacao.CheckedChanged += chk_enganacao_CheckedChanged;
             // 
             // panel20
             // 
@@ -1454,6 +1475,7 @@
             chk_atuacao.TabIndex = 21;
             chk_atuacao.Text = "Atuação (CAR)";
             chk_atuacao.UseVisualStyleBackColor = true;
+            chk_atuacao.CheckedChanged += chk_atuacao_CheckedChanged;
             // 
             // panel19
             // 
@@ -1498,6 +1520,7 @@
             chk_arcanismo.TabIndex = 17;
             chk_arcanismo.Text = "Arcanismo (INT)";
             chk_arcanismo.UseVisualStyleBackColor = true;
+            chk_arcanismo.CheckedChanged += chk_arcanismo_CheckedChanged;
             // 
             // chk_atletismo
             // 
@@ -1508,6 +1531,7 @@
             chk_atletismo.TabIndex = 19;
             chk_atletismo.Text = "Atletismo (FOR)";
             chk_atletismo.UseVisualStyleBackColor = true;
+            chk_atletismo.CheckedChanged += chk_atletismo_CheckedChanged;
             // 
             // panel18
             // 
@@ -1535,6 +1559,7 @@
             chk_acrobacia.TabIndex = 15;
             chk_acrobacia.Text = "Acrobacia (DES)";
             chk_acrobacia.UseVisualStyleBackColor = true;
+            chk_acrobacia.CheckedChanged += chk_acrobacia_CheckedChanged;
             // 
             // label34
             // 

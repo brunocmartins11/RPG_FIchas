@@ -152,40 +152,76 @@ namespace RPG_Fichas
                     txt_carisma.Text = $"{Convert.ToInt32(txt_carisma.Text) + 1}";
                     break;
             }
-
         }
 
         private void txt_forca_TextChanged(object sender, EventArgs e)
         {
-            AtualizarModificador(txt_forca, lbl_forca_atributo);
+            String modificador = AtualizarModificador(txt_forca, lbl_forca_atributo);
+
+            lbl_atletismo.Text = modificador; // Atletismo
+            lbl_forca_salvaguarda.Text = modificador;
+
         }
 
         private void txt_destreza_TextChanged(object sender, EventArgs e)
         {
-            AtualizarModificador(txt_destreza, lbl_destreza_atributo);
+            String modificador = AtualizarModificador(txt_destreza, lbl_destreza_atributo);
+
+            lbl_acrobacia.Text = modificador; // Acrobacia
+            lbl_prestidifitacao.Text = modificador; // Sutileza
+            lbl_furtividade.Text = modificador; // Furtividade
+            lbl_destreza_salvaguarda.Text = modificador;
         }
 
         private void txt_constituicao_TextChanged(object sender, EventArgs e)
         {
-            AtualizarModificador(txt_constituicao, lbl_constituicao_atributo);
+            String modificador = AtualizarModificador(txt_constituicao, lbl_constituicao_atributo);
+
+            lbl_constituicao_salvaguarda.Text = modificador;
         }
+
 
         private void txt_inteligencia_TextChanged(object sender, EventArgs e)
         {
-            AtualizarModificador(txt_inteligencia, lbl_inteligencia_atributo);
+            String modificador = AtualizarModificador(txt_inteligencia, lbl_inteligencia_atributo);
+
+            lbl_arcanismo.Text = modificador; // Amanhã
+            lbl_historia.Text = modificador; // História
+            lbl_investigacao.Text = modificador; // Investigação
+            lbl_religiao.Text = modificador; // Religião
+            lbl_natureza.Text = modificador;
+
+            lbl_inteligencia_salvaguarda.Text = modificador;
+
         }
 
         private void txt_sabedoria_TextChanged(object sender, EventArgs e)
         {
-            AtualizarModificador(txt_sabedoria, lbl_sabedoria_atributo);
+            String modificador = AtualizarModificador(txt_sabedoria, lbl_sabedoria_atributo);
+
+            lbl_animais.Text = modificador; // Lidar com Animais
+            lbl_medicina.Text = modificador; // Medicina
+            lbl_percepcao.Text = modificador; // Percepção
+            lbl_sobrevivencia.Text = modificador;
+            lbl_intuicao.Text = modificador;
+
+            lbl_sabedoria_salvaguarda.Text = modificador;
         }
 
         private void txt_carisma_TextChanged(object sender, EventArgs e)
         {
-            AtualizarModificador(txt_carisma, lbl_carisma_atributo);
+            String modificador = AtualizarModificador(txt_carisma, lbl_carisma_atributo);
+
+            lbl_atuacao.Text = modificador; // Atuação
+            lbl_intimidacao.Text = modificador; // Intimidação
+            lbl_persuasao.Text = modificador; // Persuasão
+            lbl_enganacao.Text = modificador; // Enganação
+
+
+            lbl_carisma_salvaguarda.Text = modificador;
         }
 
-        private void AtualizarModificador(TextBox textBox, Label label)
+        private String AtualizarModificador(TextBox textBox, Label label)
         {
             int valorAtributo;
 
@@ -197,37 +233,149 @@ namespace RPG_Fichas
 
                 // Atualiza o rótulo com o modificador
                 label.Text = modificador.ToString();
+
+                return modificador.ToString();
             }
             else
             {
                 // Se a conversão falhar, exibe um valor padrão ou uma mensagem de erro
                 label.Text = "Inválido";
+
+                return "";
             }
         }
 
-        private void txt_destreza_TextChanged_1(object sender, EventArgs e)
-        {
 
+        private void AtualizarPericia(CheckBox checkBox, Label label, int proficiencia)
+        {
+            if (checkBox.Checked)
+            {
+                label.Text = $"{Convert.ToInt32(label.Text) + proficiencia}";
+            }
+            else
+            {
+                label.Text = $"{Convert.ToInt32(label.Text) - proficiencia}";
+            }
         }
 
-        private void txt_constituicao_TextChanged_1(object sender, EventArgs e)
+        private void chk_forca_CheckedChanged(object sender, EventArgs e)
         {
-
+            AtualizarPericia(chk_forca, lbl_forca_salvaguarda, Convert.ToInt32(lbl_proficiencia.Text));
         }
 
-        private void txt_inteligencia_TextChanged_1(object sender, EventArgs e)
+        private void chk_destreza_CheckedChanged(object sender, EventArgs e)
         {
-
+            AtualizarPericia(chk_destreza, lbl_forca_salvaguarda, Convert.ToInt32(lbl_proficiencia.Text));
         }
 
-        private void txt_sabedoria_TextChanged_1(object sender, EventArgs e)
+        private void chk_constituicao_CheckedChanged(object sender, EventArgs e)
         {
-
+            AtualizarPericia(chk_constituicao, lbl_constituicao_salvaguarda, Convert.ToInt32(lbl_proficiencia.Text));
         }
 
-        private void txt_carisma_TextChanged_1(object sender, EventArgs e)
+        private void chk_inteligencia_CheckedChanged(object sender, EventArgs e)
         {
+            AtualizarPericia(chk_inteligencia, lbl_inteligencia_salvaguarda, Convert.ToInt32(lbl_proficiencia.Text));
+        }
 
+        private void chk_sabedoria_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_sabedoria, lbl_sabedoria_salvaguarda, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_carisma_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_carisma, lbl_carisma_salvaguarda, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_acrobacia_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_acrobacia, lbl_acrobacia, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_enganacao_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_enganacao, lbl_enganacao, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_intuicao_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_intuicao, lbl_intuicao, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_natureza_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_natureza, lbl_natureza, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_arcanismo_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_arcanismo, lbl_arcanismo, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_furtividade_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_furtividade, lbl_furtividade, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_investigacao_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_investigacao, lbl_investigacao, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_percepcao_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_percepcao, lbl_percepcao, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_religiao_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_religiao, lbl_religiao, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_atletismo_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_atletismo, lbl_atletismo, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_historia_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_historia, lbl_historia, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_animais_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_animais, lbl_animais, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_persuasao_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_persuasao, lbl_persuasao, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_sobrevivencia_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_sobrevivencia, lbl_sobrevivencia, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_atuacao_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_atuacao, lbl_atuacao, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_intimidacao_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_intimidacao, lbl_intimidacao, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_medicina_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_medicina, lbl_medicina, Convert.ToInt32(lbl_proficiencia.Text));
+        }
+
+        private void chk_prestidigitacao_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarPericia(chk_prestidigitacao, lbl_prestidifitacao, Convert.ToInt32(lbl_proficiencia.Text));
         }
     }
 }
