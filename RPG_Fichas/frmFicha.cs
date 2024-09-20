@@ -6,7 +6,7 @@ namespace RPG_Fichas
 
     public partial class frmFicha : Form
     {
-        private string _connectionString = "Server=localhost;Database=fichasrpg;User Id=root;Password=;";
+        private string _connectionString = @"Data Source=localhost;Initial Catalog=fichasrpg;User ID=root;Password=admin;";
 
         public frmFicha()
         {
@@ -20,10 +20,41 @@ namespace RPG_Fichas
                 try
                 {
                     connection.Open();
-                    // Adicione aqui o código para executar comandos SQL, por exemplo:
-                    // SqlCommand command = new SqlCommand("INSERT INTO Tabela (Coluna) VALUES (@valor)", connection);
-                    // command.Parameters.AddWithValue("@valor", valor);
-                    // command.ExecuteNonQuery();
+
+                    // Obtendo os valores dos campos do formulário
+                    string nomePersonagem = txt_nome_personagem.Text;
+                    int nivel = int.Parse(numeric_nivel.Text);
+                    string classe = cbx_classe.Text;
+                    string raca = cbx_raca.Text;
+                    string antecedente = txt_antecedente.Text;
+                    string alinhamento = txt_alinhamento.Text;
+                    int pontosVida = int.Parse(txt_HP.Text);
+                    int ca = int.Parse(txt_CA.Text);
+                    int deslocamento = int.Parse(txt_deslocamento.Text);
+
+                    // Comando SQL para inserir a nova ficha
+                    string query = @"
+                INSERT INTO Ficha (nomePersonagem, nivel, classe, raca, antecedente, alinhamento, pontosVida, ca, deslocamento)
+                VALUES (@nomePersonagem, @nivel, @classe, @raca, @antecedente, @alinhamento, @pontosVida, @ca, @deslocamento)";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Adicionando os parâmetros ao comando
+                        command.Parameters.AddWithValue("@nomePersonagem", nomePersonagem);
+                        command.Parameters.AddWithValue("@nivel", nivel);
+                        command.Parameters.AddWithValue("@classe", classe);
+                        command.Parameters.AddWithValue("@raca", raca);
+                        command.Parameters.AddWithValue("@antecedente", (object)antecedente ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@alinhamento", (object)alinhamento ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@pontosVida", pontosVida);
+                        command.Parameters.AddWithValue("@ca", ca);
+                        command.Parameters.AddWithValue("@deslocamento", deslocamento);
+
+                        // Executando o comando
+                        command.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Ficha cadastrada com sucesso!");
                 }
                 catch (Exception ex)
                 {
@@ -31,6 +62,113 @@ namespace RPG_Fichas
                 }
             }
         }
+
+        private void btnDeletar_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Obtendo o ID da ficha a ser deletada
+                    int idFicha = int.Parse(txt_id_ficha.Text);
+
+                    // Comando SQL para deletar a ficha
+                    string query = "DELETE FROM Ficha WHERE idFicha = @idFicha";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Adicionando o parâmetro ao comando
+                        command.Parameters.AddWithValue("@idFicha", idFicha);
+
+                        // Executando o comando
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Ficha deletada com sucesso!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ficha não encontrada.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocorreu um erro: " + ex.Message);
+                }
+            }
+        }
+
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Obtendo os valores dos campos do formulário
+                    int idFicha = int.Parse(txt_id_ficha.Text);
+                    string nomePersonagem = txt_nome_personagem.Text;
+                    int nivel = int.Parse(numeric_nivel.Text);
+                    string classe = cbx_classe.Text;
+                    string raca = cbx_raca.Text;
+                    string antecedente = txt_antecedente.Text;
+                    string alinhamento = txt_alinhamento.Text;
+                    int pontosVida = int.Parse(txt_HP.Text);
+                    int ca = int.Parse(txt_CA.Text);
+                    int deslocamento = int.Parse(txt_deslocamento.Text);
+
+                    // Comando SQL para atualizar a ficha
+                    string query = @"
+                UPDATE Ficha
+                SET nomePersonagem = @nomePersonagem,
+                    nivel = @nivel,
+                    classe = @classe,
+                    raca = @raca,
+                    antecedente = @antecedente,
+                    alinhamento = @alinhamento,
+                    pontosVida = @pontosVida,
+                    ca = @ca,
+                    deslocamento = @deslocamento
+                WHERE idFicha = @idFicha";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Adicionando os parâmetros ao comando
+                        command.Parameters.AddWithValue("@idFicha", idFicha);
+                        command.Parameters.AddWithValue("@nomePersonagem", nomePersonagem);
+                        command.Parameters.AddWithValue("@nivel", nivel);
+                        command.Parameters.AddWithValue("@classe", classe);
+                        command.Parameters.AddWithValue("@raca", raca);
+                        command.Parameters.AddWithValue("@antecedente", (object)antecedente ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@alinhamento", (object)alinhamento ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@pontosVida", pontosVida);
+                        command.Parameters.AddWithValue("@ca", ca);
+                        command.Parameters.AddWithValue("@deslocamento", deslocamento);
+
+                        // Executando o comando
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Ficha atualizada com sucesso!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ficha não encontrada.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocorreu um erro: " + ex.Message);
+                }
+            }
+        }
+
 
         private void cbx_classe_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -265,7 +403,7 @@ namespace RPG_Fichas
 
         private void chk_destreza_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_destreza, lbl_forca_salvaguarda, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarPericia(chk_destreza, lbl_destreza_salvaguarda, Convert.ToInt32(lbl_proficiencia.Text));
         }
 
         private void chk_constituicao_CheckedChanged(object sender, EventArgs e)
@@ -368,7 +506,7 @@ namespace RPG_Fichas
             AtualizarPericia(chk_intimidacao, lbl_intimidacao, Convert.ToInt32(lbl_proficiencia.Text));
         }
 
-        private void chk_medicina_CheckedChanged(object sender, EventArgs e)
+        private void chk_medicina_CheckedChanged(object sender, EventArgs e)    
         {
             AtualizarPericia(chk_medicina, lbl_medicina, Convert.ToInt32(lbl_proficiencia.Text));
         }

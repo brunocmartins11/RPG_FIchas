@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SmLSilOZExk=",
+  "dgSpecHash": "28t+mhXUE+E=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Aluno\\source\\repos\\RPG_Fichas\\RPG_Fichas\\RPG_Fichas.csproj",
+  "projectFilePath": "C:\\Users\\Aluno\\Source\\Repos\\brunocmartins11\\RPG_Fichas\\RPG_Fichas\\RPG_Fichas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aluno\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Aluno\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

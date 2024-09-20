@@ -1588,7 +1588,7 @@
             Controls.Add(panel1);
             Margin = new Padding(2);
             Name = "frmFicha";
-            Text = "frmFicha";
+            Text = "z";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numeric_nivel).EndInit();
