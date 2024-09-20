@@ -1,21 +1,100 @@
-﻿using System.Data.SqlClient;
+﻿using System.Data.SQLite; // Import SQLite library
 
 namespace RPG_Fichas
 {
-
-
     public partial class frmFicha : Form
     {
-        private string _connectionString = @"Data Source=localhost;Initial Catalog=fichasrpg;User ID=root;Password=admin;";
+        public int FichaId { get; set; }
+
+        private string _connectionString = @"Data Source=C:\Users\labsfiap\Source\Repos\RPG_Fichas\RPG_Fichas\ficha.db;Version=3;";
 
         public frmFicha()
         {
             InitializeComponent();
+            this.Load += new EventHandler(frmFicha_Load);
         }
+
+        private void frmFicha_Load(object sender, EventArgs e)
+        {
+            if (FichaId > 0) // Verifica se o ID da ficha é válido
+            {
+                LoadFichaData();
+            }
+        }
+
+        private void LoadFichaData()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+
+                    // Consulta para carregar os dados da ficha
+                    string queryFicha = "SELECT * FROM Ficha WHERE idFicha = @idFicha";
+                    using (SQLiteCommand command = new SQLiteCommand(queryFicha, connection))
+                    {
+                        command.Parameters.AddWithValue("@idFicha", FichaId);
+
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Popula os campos do formulário com os dados da ficha
+                                txt_nome_personagem.Text = reader["nomePersonagem"].ToString();
+                                numeric_nivel.Value = Convert.ToInt32(reader["nivel"]);
+                                cbx_classe.SelectedItem = reader["classe"].ToString();
+                                cbx_raca.SelectedItem = reader["raca"].ToString();
+                                txt_antecedente.Text = reader["antecedente"].ToString();
+                                txt_alinhamento.Text = reader["alinhamento"].ToString();
+                                txt_HP.Text = reader["pontosVida"].ToString();
+                                txt_CA.Text = reader["ca"].ToString();
+                                txt_deslocamento.Text = reader["deslocamento"].ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ficha não encontrada.");
+                                return; // Sai do método se a ficha não for encontrada
+                            }
+                        }
+                    }
+
+                    // Consulta para carregar os atributos relacionados à ficha
+                    string queryAtributos = "SELECT * FROM Atributos WHERE idAtributos = @idFicha";
+                    using (SQLiteCommand command = new SQLiteCommand(queryAtributos, connection))
+                    {
+                        command.Parameters.AddWithValue("@idFicha", FichaId);
+
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Popula os campos do formulário com os dados dos atributos
+                                txt_forca.Text = reader["forca"].ToString();
+                                txt_destreza.Text = reader["destreza"].ToString();
+                                txt_constituicao.Text = reader["constituicao"].ToString();
+                                txt_inteligencia.Text = reader["inteligencia"].ToString();
+                                txt_sabedoria.Text = reader["sabedoria"].ToString();
+                                txt_carisma.Text = reader["carisma"].ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Atributos não encontrados.");
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ocorreu um erro: " + ex.Message);
+                }
+            }
+        }
+
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 try
                 {
@@ -23,7 +102,8 @@ namespace RPG_Fichas
 
                     // Obtendo os valores dos campos do formulário
                     string nomePersonagem = txt_nome_personagem.Text;
-                    int nivel = int.Parse(numeric_nivel.Text);
+                    string nomePlayer = txt_nome_jogador.Text;
+                    int nivel = (int)numeric_nivel.Value;
                     string classe = cbx_classe.Text;
                     string raca = cbx_raca.Text;
                     string antecedente = txt_antecedente.Text;
@@ -33,22 +113,54 @@ namespace RPG_Fichas
                     int deslocamento = int.Parse(txt_deslocamento.Text);
 
                     // Comando SQL para inserir a nova ficha
-                    string query = @"
-                INSERT INTO Ficha (nomePersonagem, nivel, classe, raca, antecedente, alinhamento, pontosVida, ca, deslocamento)
-                VALUES (@nomePersonagem, @nivel, @classe, @raca, @antecedente, @alinhamento, @pontosVida, @ca, @deslocamento)";
+                    string queryFicha = @"
+        INSERT INTO Ficha (nomePersonagem, nomePlayer, nivel, classe, raca, antecedente, alinhamento, pontosVida, ca, deslocamento)
+        VALUES (@nomePersonagem, @nomePlayer, @nivel, @classe, @raca, @antecedente, @alinhamento, @pontosVida, @ca, @deslocamento);
+        SELECT last_insert_rowid();"; // Obtendo o ID da ficha criada
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    int idFicha;
+
+                    using (SQLiteCommand command = new SQLiteCommand(queryFicha, connection))
                     {
                         // Adicionando os parâmetros ao comando
                         command.Parameters.AddWithValue("@nomePersonagem", nomePersonagem);
+                        command.Parameters.AddWithValue("@nomePlayer", nomePlayer);
                         command.Parameters.AddWithValue("@nivel", nivel);
                         command.Parameters.AddWithValue("@classe", classe);
                         command.Parameters.AddWithValue("@raca", raca);
-                        command.Parameters.AddWithValue("@antecedente", (object)antecedente ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@alinhamento", (object)alinhamento ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@antecedente", string.IsNullOrEmpty(antecedente) ? (object)DBNull.Value : antecedente);
+                        command.Parameters.AddWithValue("@alinhamento", string.IsNullOrEmpty(alinhamento) ? (object)DBNull.Value : alinhamento);
                         command.Parameters.AddWithValue("@pontosVida", pontosVida);
                         command.Parameters.AddWithValue("@ca", ca);
                         command.Parameters.AddWithValue("@deslocamento", deslocamento);
+
+                        // Executando o comando e obtendo o ID da nova ficha
+                        idFicha = Convert.ToInt32(command.ExecuteScalar());
+                    }
+
+                    // Comando SQL para inserir os atributos relacionados com a ficha
+                    string queryAtributos = @"
+        INSERT INTO Atributos (idAtributos, forca, destreza, constituicao, inteligencia, sabedoria, carisma)
+        VALUES (@idFicha, @forca, @destreza, @constituicao, @inteligencia, @sabedoria, @carisma)";
+
+                    using (SQLiteCommand command = new SQLiteCommand(queryAtributos, connection))
+                    {
+                        // Aqui você deve definir os valores dos atributos, por exemplo:
+                        int forca = int.Parse(txt_forca.Text);
+                        int destreza = int.Parse(txt_destreza.Text);
+                        int constituicao = int.Parse(txt_constituicao.Text);
+                        int inteligencia = int.Parse(txt_inteligencia.Text);
+                        int sabedoria = int.Parse(txt_sabedoria.Text);
+                        int carisma = int.Parse(txt_carisma.Text);
+
+                        // Adicionando os parâmetros ao comando
+                        command.Parameters.AddWithValue("@idFicha", idFicha);
+                        command.Parameters.AddWithValue("@forca", forca);
+                        command.Parameters.AddWithValue("@destreza", destreza);
+                        command.Parameters.AddWithValue("@constituicao", constituicao);
+                        command.Parameters.AddWithValue("@inteligencia", inteligencia);
+                        command.Parameters.AddWithValue("@sabedoria", sabedoria);
+                        command.Parameters.AddWithValue("@carisma", carisma);
 
                         // Executando o comando
                         command.ExecuteNonQuery();
@@ -63,48 +175,11 @@ namespace RPG_Fichas
             }
         }
 
-        private void btnDeletar_Click(object sender, EventArgs e)
-        {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                try
-                {
-                    connection.Open();
-
-                    // Obtendo o ID da ficha a ser deletada
-                    int idFicha = int.Parse(txt_id_ficha.Text);
-
-                    // Comando SQL para deletar a ficha
-                    string query = "DELETE FROM Ficha WHERE idFicha = @idFicha";
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        // Adicionando o parâmetro ao comando
-                        command.Parameters.AddWithValue("@idFicha", idFicha);
-
-                        // Executando o comando
-                        int rowsAffected = command.ExecuteNonQuery();
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Ficha deletada com sucesso!");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ficha não encontrada.");
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ocorreu um erro: " + ex.Message);
-                }
-            }
-        }
-
+        /*
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
             {
                 try
                 {
@@ -113,7 +188,7 @@ namespace RPG_Fichas
                     // Obtendo os valores dos campos do formulário
                     int idFicha = int.Parse(txt_id_ficha.Text);
                     string nomePersonagem = txt_nome_personagem.Text;
-                    int nivel = int.Parse(numeric_nivel.Text);
+                    int nivel = (int)numeric_nivel.Value; // Use Value instead of Text
                     string classe = cbx_classe.Text;
                     string raca = cbx_raca.Text;
                     string antecedente = txt_antecedente.Text;
@@ -124,19 +199,19 @@ namespace RPG_Fichas
 
                     // Comando SQL para atualizar a ficha
                     string query = @"
-                UPDATE Ficha
-                SET nomePersonagem = @nomePersonagem,
-                    nivel = @nivel,
-                    classe = @classe,
-                    raca = @raca,
-                    antecedente = @antecedente,
-                    alinhamento = @alinhamento,
-                    pontosVida = @pontosVida,
-                    ca = @ca,
-                    deslocamento = @deslocamento
-                WHERE idFicha = @idFicha";
+                    UPDATE Ficha
+                    SET nomePersonagem = @nomePersonagem,
+                        nivel = @nivel,
+                        classe = @classe,
+                        raca = @raca,
+                        antecedente = @antecedente,
+                        alinhamento = @alinhamento,
+                        pontosVida = @pontosVida,
+                        ca = @ca,
+                        deslocamento = @deslocamento
+                    WHERE idFicha = @idFicha";
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
                     {
                         // Adicionando os parâmetros ao comando
                         command.Parameters.AddWithValue("@idFicha", idFicha);
@@ -144,8 +219,8 @@ namespace RPG_Fichas
                         command.Parameters.AddWithValue("@nivel", nivel);
                         command.Parameters.AddWithValue("@classe", classe);
                         command.Parameters.AddWithValue("@raca", raca);
-                        command.Parameters.AddWithValue("@antecedente", (object)antecedente ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@alinhamento", (object)alinhamento ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@antecedente", string.IsNullOrEmpty(antecedente) ? (object)DBNull.Value : antecedente);
+                        command.Parameters.AddWithValue("@alinhamento", string.IsNullOrEmpty(alinhamento) ? (object)DBNull.Value : alinhamento);
                         command.Parameters.AddWithValue("@pontosVida", pontosVida);
                         command.Parameters.AddWithValue("@ca", ca);
                         command.Parameters.AddWithValue("@deslocamento", deslocamento);
@@ -167,7 +242,7 @@ namespace RPG_Fichas
                     MessageBox.Show("Ocorreu um erro: " + ex.Message);
                 }
             }
-        }
+        }*/
 
 
         private void cbx_classe_SelectedIndexChanged(object sender, EventArgs e)
@@ -259,12 +334,6 @@ namespace RPG_Fichas
 
         private void cbx_raca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txt_forca.Text = $"0";
-            txt_destreza.Text = $"0";
-            txt_constituicao.Text = $"0";
-            txt_sabedoria.Text = $"0";
-            txt_inteligencia.Text = $"0";
-            txt_carisma.Text = $"0";
 
             switch (cbx_raca.SelectedIndex)
             {

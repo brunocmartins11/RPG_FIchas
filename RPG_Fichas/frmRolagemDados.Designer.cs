@@ -196,7 +196,6 @@
         private Label label1;
         private Label label2;
         private TextBox txtQuantidade;
-        private TextBox txtLados;
         private Button btnRolagem;
         private GroupBox groupBox1;
         private RadioButton radioButton4;
