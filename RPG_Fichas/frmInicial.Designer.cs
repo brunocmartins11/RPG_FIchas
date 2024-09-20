@@ -39,6 +39,7 @@
             button1 = new Button();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
+            btnCadastro = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -52,7 +53,7 @@
             txtLogin.Margin = new Padding(4, 5, 4, 5);
             txtLogin.Name = "txtLogin";
             txtLogin.PlaceholderText = "Digite seu login";
-            txtLogin.Size = new Size(260, 34);
+            txtLogin.Size = new Size(260, 29);
             txtLogin.TabIndex = 0;
             // 
             // txtSenha
@@ -62,7 +63,7 @@
             txtSenha.Name = "txtSenha";
             txtSenha.PasswordChar = '*';
             txtSenha.PlaceholderText = "Digite sua Senha";
-            txtSenha.Size = new Size(260, 34);
+            txtSenha.Size = new Size(260, 29);
             txtSenha.TabIndex = 1;
             // 
             // label1
@@ -71,7 +72,7 @@
             label1.Location = new Point(147, 318);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(65, 28);
+            label1.Size = new Size(52, 21);
             label1.TabIndex = 2;
             label1.Text = "Login:";
             // 
@@ -81,7 +82,7 @@
             label2.Location = new Point(147, 422);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(69, 28);
+            label2.Size = new Size(56, 21);
             label2.TabIndex = 3;
             label2.Text = "Senha:";
             // 
@@ -114,6 +115,7 @@
             // panel1
             // 
             panel1.BackColor = Color.Red;
+            panel1.Controls.Add(btnCadastro);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(txtLogin);
@@ -161,9 +163,24 @@
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
+            // btnCadastro
+            // 
+            btnCadastro.BackColor = Color.Black;
+            btnCadastro.FlatAppearance.BorderColor = Color.Black;
+            btnCadastro.FlatAppearance.BorderSize = 0;
+            btnCadastro.ForeColor = SystemColors.Window;
+            btnCadastro.Location = new Point(224, 641);
+            btnCadastro.Margin = new Padding(4, 5, 4, 5);
+            btnCadastro.Name = "btnCadastro";
+            btnCadastro.Size = new Size(131, 34);
+            btnCadastro.TabIndex = 8;
+            btnCadastro.Text = "Cadastro";
+            btnCadastro.UseVisualStyleBackColor = false;
+            btnCadastro.Click += btnCadastro_Click;
+            // 
             // frmInicial
             // 
-            AutoScaleDimensions = new SizeF(10F, 23F);
+            AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1142, 690);
@@ -195,5 +212,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Button button1;
+        private Button btnCadastro;
     }
 }

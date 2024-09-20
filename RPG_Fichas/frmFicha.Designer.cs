@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            cbx_antecedente = new ComboBox();
             cbx_raca = new ComboBox();
             cbx_classe = new ComboBox();
             label8 = new Label();
@@ -41,7 +42,6 @@
             label3 = new Label();
             label2 = new Label();
             txt_nome_jogador = new TextBox();
-            txt_antecedente = new TextBox();
             label1 = new Label();
             txt_nome_personagem = new TextBox();
             label7 = new Label();
@@ -209,6 +209,7 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(cbx_antecedente);
             panel1.Controls.Add(cbx_raca);
             panel1.Controls.Add(cbx_classe);
             panel1.Controls.Add(label8);
@@ -221,13 +222,22 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(txt_nome_jogador);
-            panel1.Controls.Add(txt_antecedente);
             panel1.Controls.Add(label1);
             panel1.Location = new Point(270, 9);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(504, 137);
             panel1.TabIndex = 0;
+            // 
+            // cbx_antecedente
+            // 
+            cbx_antecedente.FormattingEnabled = true;
+            cbx_antecedente.Items.AddRange(new object[] { "Acólito", "Artesão de Guilda", "Charlatão", "Criminoso", "Eremita", "Forasteiro", "Herói do Povo", "Marinheiro", "Nobre", "Órfão", "Sábio", "Soldado", "Artista" });
+            cbx_antecedente.Location = new Point(172, 8);
+            cbx_antecedente.Name = "cbx_antecedente";
+            cbx_antecedente.Size = new Size(157, 23);
+            cbx_antecedente.TabIndex = 12;
+            cbx_antecedente.SelectedIndexChanged += cbx_antecedente_SelectedIndexChanged;
             // 
             // cbx_raca
             // 
@@ -243,7 +253,7 @@
             // cbx_classe
             // 
             cbx_classe.FormattingEnabled = true;
-            cbx_classe.Items.AddRange(new object[] { "Guerreiro", "Mago", "Ladino", "Monge", "Feiticeiro", "Druida", "Bruxo", "Bardo", "Barbaro", "Paladino", "Patrulheiro", "Clerigo" });
+            cbx_classe.Items.AddRange(new object[] { "Bárbaro", "Bardo", "Bruxo", "Clérigo", "Druida", "Feiticeiro", "Guerreiro", "Ladino", "Mago", "Monge", "Paladino", "Patrulheiro" });
             cbx_classe.Location = new Point(8, 7);
             cbx_classe.Margin = new Padding(3, 2, 3, 2);
             cbx_classe.Name = "cbx_classe";
@@ -341,15 +351,6 @@
             txt_nome_jogador.Size = new Size(159, 23);
             txt_nome_jogador.TabIndex = 2;
             // 
-            // txt_antecedente
-            // 
-            txt_antecedente.BackColor = Color.White;
-            txt_antecedente.Location = new Point(172, 8);
-            txt_antecedente.Margin = new Padding(3, 2, 3, 2);
-            txt_antecedente.Name = "txt_antecedente";
-            txt_antecedente.Size = new Size(159, 23);
-            txt_antecedente.TabIndex = 2;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -437,7 +438,7 @@
             lbl_proficiencia.Name = "lbl_proficiencia";
             lbl_proficiencia.Size = new Size(19, 21);
             lbl_proficiencia.TabIndex = 1;
-            lbl_proficiencia.Text = "1";
+            lbl_proficiencia.Text = "2";
             // 
             // txt_inspiracao
             // 
@@ -1134,9 +1135,9 @@
             lbl_sobrevivencia.AutoSize = true;
             lbl_sobrevivencia.Location = new Point(3, 2);
             lbl_sobrevivencia.Name = "lbl_sobrevivencia";
-            lbl_sobrevivencia.Size = new Size(21, 15);
+            lbl_sobrevivencia.Size = new Size(13, 15);
             lbl_sobrevivencia.TabIndex = 0;
-            lbl_sobrevivencia.Text = "+1";
+            lbl_sobrevivencia.Text = "1";
             // 
             // panel30
             // 
@@ -1152,9 +1153,9 @@
             lbl_prestidifitacao.AutoSize = true;
             lbl_prestidifitacao.Location = new Point(3, 2);
             lbl_prestidifitacao.Name = "lbl_prestidifitacao";
-            lbl_prestidifitacao.Size = new Size(21, 15);
+            lbl_prestidifitacao.Size = new Size(13, 15);
             lbl_prestidifitacao.TabIndex = 0;
-            lbl_prestidifitacao.Text = "+1";
+            lbl_prestidifitacao.Text = "1";
             // 
             // chk_religiao
             // 
@@ -1206,9 +1207,9 @@
             lbl_percepcao.AutoSize = true;
             lbl_percepcao.Location = new Point(3, 2);
             lbl_percepcao.Name = "lbl_percepcao";
-            lbl_percepcao.Size = new Size(21, 15);
+            lbl_percepcao.Size = new Size(13, 15);
             lbl_percepcao.TabIndex = 0;
-            lbl_percepcao.Text = "+1";
+            lbl_percepcao.Text = "1";
             // 
             // panel32
             // 
@@ -1224,9 +1225,9 @@
             lbl_persuasao.AutoSize = true;
             lbl_persuasao.Location = new Point(3, 2);
             lbl_persuasao.Name = "lbl_persuasao";
-            lbl_persuasao.Size = new Size(21, 15);
+            lbl_persuasao.Size = new Size(13, 15);
             lbl_persuasao.TabIndex = 0;
-            lbl_persuasao.Text = "+1";
+            lbl_persuasao.Text = "1";
             // 
             // chk_percepcao
             // 
@@ -1266,9 +1267,9 @@
             lbl_natureza.AutoSize = true;
             lbl_natureza.Location = new Point(3, 2);
             lbl_natureza.Name = "lbl_natureza";
-            lbl_natureza.Size = new Size(21, 15);
+            lbl_natureza.Size = new Size(13, 15);
             lbl_natureza.TabIndex = 0;
-            lbl_natureza.Text = "+1";
+            lbl_natureza.Text = "1";
             // 
             // chk_natureza
             // 
@@ -1296,9 +1297,9 @@
             lbl_medicina.AutoSize = true;
             lbl_medicina.Location = new Point(3, 2);
             lbl_medicina.Name = "lbl_medicina";
-            lbl_medicina.Size = new Size(21, 15);
+            lbl_medicina.Size = new Size(13, 15);
             lbl_medicina.TabIndex = 0;
-            lbl_medicina.Text = "+1";
+            lbl_medicina.Text = "1";
             // 
             // chk_medicina
             // 
@@ -1326,9 +1327,9 @@
             lbl_investigacao.AutoSize = true;
             lbl_investigacao.Location = new Point(3, 2);
             lbl_investigacao.Name = "lbl_investigacao";
-            lbl_investigacao.Size = new Size(21, 15);
+            lbl_investigacao.Size = new Size(13, 15);
             lbl_investigacao.TabIndex = 0;
-            lbl_investigacao.Text = "+1";
+            lbl_investigacao.Text = "1";
             // 
             // panel28
             // 
@@ -1344,9 +1345,9 @@
             lbl_animais.AutoSize = true;
             lbl_animais.Location = new Point(3, 2);
             lbl_animais.Name = "lbl_animais";
-            lbl_animais.Size = new Size(21, 15);
+            lbl_animais.Size = new Size(13, 15);
             lbl_animais.TabIndex = 0;
-            lbl_animais.Text = "+1";
+            lbl_animais.Text = "1";
             // 
             // chk_investigacao
             // 
@@ -1386,9 +1387,9 @@
             lbl_intuicao.AutoSize = true;
             lbl_intuicao.Location = new Point(3, 2);
             lbl_intuicao.Name = "lbl_intuicao";
-            lbl_intuicao.Size = new Size(21, 15);
+            lbl_intuicao.Size = new Size(13, 15);
             lbl_intuicao.TabIndex = 0;
-            lbl_intuicao.Text = "+1";
+            lbl_intuicao.Text = "1";
             // 
             // chk_intuicao
             // 
@@ -1416,9 +1417,9 @@
             lbl_intimidacao.AutoSize = true;
             lbl_intimidacao.Location = new Point(3, 2);
             lbl_intimidacao.Name = "lbl_intimidacao";
-            lbl_intimidacao.Size = new Size(21, 15);
+            lbl_intimidacao.Size = new Size(13, 15);
             lbl_intimidacao.TabIndex = 0;
-            lbl_intimidacao.Text = "+1";
+            lbl_intimidacao.Text = "1";
             // 
             // chk_intimidacao
             // 
@@ -1446,9 +1447,9 @@
             lbl_furtividade.AutoSize = true;
             lbl_furtividade.Location = new Point(3, 2);
             lbl_furtividade.Name = "lbl_furtividade";
-            lbl_furtividade.Size = new Size(21, 15);
+            lbl_furtividade.Size = new Size(13, 15);
             lbl_furtividade.TabIndex = 0;
-            lbl_furtividade.Text = "+1";
+            lbl_furtividade.Text = "1";
             // 
             // panel24
             // 
@@ -1464,9 +1465,9 @@
             lbl_historia.AutoSize = true;
             lbl_historia.Location = new Point(3, 2);
             lbl_historia.Name = "lbl_historia";
-            lbl_historia.Size = new Size(21, 15);
+            lbl_historia.Size = new Size(13, 15);
             lbl_historia.TabIndex = 0;
-            lbl_historia.Text = "+1";
+            lbl_historia.Text = "1";
             // 
             // chk_furtividade
             // 
@@ -1506,9 +1507,9 @@
             lbl_enganacao.AutoSize = true;
             lbl_enganacao.Location = new Point(3, 2);
             lbl_enganacao.Name = "lbl_enganacao";
-            lbl_enganacao.Size = new Size(21, 15);
+            lbl_enganacao.Size = new Size(13, 15);
             lbl_enganacao.TabIndex = 0;
-            lbl_enganacao.Text = "+1";
+            lbl_enganacao.Text = "1";
             // 
             // chk_enganacao
             // 
@@ -1536,9 +1537,9 @@
             lbl_atuacao.AutoSize = true;
             lbl_atuacao.Location = new Point(3, 2);
             lbl_atuacao.Name = "lbl_atuacao";
-            lbl_atuacao.Size = new Size(21, 15);
+            lbl_atuacao.Size = new Size(13, 15);
             lbl_atuacao.TabIndex = 0;
-            lbl_atuacao.Text = "+1";
+            lbl_atuacao.Text = "1";
             // 
             // chk_atuacao
             // 
@@ -1566,9 +1567,9 @@
             lbl_arcanismo.AutoSize = true;
             lbl_arcanismo.Location = new Point(3, 2);
             lbl_arcanismo.Name = "lbl_arcanismo";
-            lbl_arcanismo.Size = new Size(21, 15);
+            lbl_arcanismo.Size = new Size(13, 15);
             lbl_arcanismo.TabIndex = 0;
-            lbl_arcanismo.Text = "+1";
+            lbl_arcanismo.Text = "1";
             // 
             // panel21
             // 
@@ -1584,9 +1585,9 @@
             lbl_atletismo.AutoSize = true;
             lbl_atletismo.Location = new Point(3, 2);
             lbl_atletismo.Name = "lbl_atletismo";
-            lbl_atletismo.Size = new Size(21, 15);
+            lbl_atletismo.Size = new Size(13, 15);
             lbl_atletismo.TabIndex = 0;
-            lbl_atletismo.Text = "+1";
+            lbl_atletismo.Text = "1";
             // 
             // chk_arcanismo
             // 
@@ -1626,9 +1627,9 @@
             lbl_acrobacia.AutoSize = true;
             lbl_acrobacia.Location = new Point(3, 2);
             lbl_acrobacia.Name = "lbl_acrobacia";
-            lbl_acrobacia.Size = new Size(21, 15);
+            lbl_acrobacia.Size = new Size(13, 15);
             lbl_acrobacia.TabIndex = 0;
-            lbl_acrobacia.Text = "+1";
+            lbl_acrobacia.Text = "1";
             // 
             // chk_acrobacia
             // 
@@ -1758,7 +1759,6 @@
         private Label label3;
         private Label label2;
         private TextBox txt_nome_jogador;
-        private TextBox txt_antecedente;
         private TextBox txt_nome_personagem;
         private Label label7;
         private Label label8;
@@ -1887,5 +1887,6 @@
         private Button btnCadastrar;
         private ComboBox cbx_raca;
         private ComboBox cbx_classe;
+        private ComboBox cbx_antecedente;
     }
 }

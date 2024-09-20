@@ -28,23 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dgvFichas = new DataGridView();
             btnNovo = new Button();
             btnDeletar = new Button();
+            dgvFichas = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dgvFichas).BeginInit();
             SuspendLayout();
-            // 
-            // dgvFichas
-            // 
-            dgvFichas.AllowUserToAddRows = false;
-            dgvFichas.AllowUserToDeleteRows = false;
-            dgvFichas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFichas.Location = new Point(79, 91);
-            dgvFichas.Name = "dgvFichas";
-            dgvFichas.ReadOnly = true;
-            dgvFichas.Size = new Size(637, 286);
-            dgvFichas.TabIndex = 0;
-            dgvFichas.CellContentDoubleClick += dgvFichas_CellDoubleClick;
             // 
             // btnNovo
             // 
@@ -66,14 +54,23 @@
             btnDeletar.UseVisualStyleBackColor = true;
             btnDeletar.Click += btnDeletar_Click;
             // 
+            // dgvFichas
+            // 
+            dgvFichas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvFichas.Location = new Point(77, 112);
+            dgvFichas.Name = "dgvFichas";
+            dgvFichas.ReadOnly = true;
+            dgvFichas.Size = new Size(670, 306);
+            dgvFichas.TabIndex = 3;
+            // 
             // frmListaFicha
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(dgvFichas);
             Controls.Add(btnDeletar);
             Controls.Add(btnNovo);
-            Controls.Add(dgvFichas);
             Name = "frmListaFicha";
             Text = "frmListaFicha";
             ((System.ComponentModel.ISupportInitialize)dgvFichas).EndInit();
@@ -81,9 +78,8 @@
         }
 
         #endregion
-
-        private DataGridView dgvFichas;
         private Button btnNovo;
         private Button btnDeletar;
+        private DataGridView dgvFichas;
     }
 }

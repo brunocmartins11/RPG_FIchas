@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite; // Import SQLite library
+using Microsoft.VisualBasic.PowerPacks;
 
 namespace RPG_Fichas
 {
@@ -6,7 +7,9 @@ namespace RPG_Fichas
     {
         public int FichaId { get; set; }
 
-        private string _connectionString = @"Data Source=C:\Users\labsfiap\Source\Repos\RPG_Fichas\RPG_Fichas\ficha.db;Version=3;";
+        private string _connectionString = @"Data Source=C:\Users\eduar\Source\Repos\RPG_Fichas\RPG_Fichas\ficha.db;Version=3;";
+
+        Dictionary<string, List<CheckBox>> periciasAntecedentes = new Dictionary<string, List<CheckBox>>();
 
         public frmFicha()
         {
@@ -19,7 +22,50 @@ namespace RPG_Fichas
             if (FichaId > 0) // Verifica se o ID da ficha é válido
             {
                 LoadFichaData();
+                InicializarAntecedentes();
             }
+        }
+
+        private void InicializarAntecedentes()
+        {
+            // Antecedente: Acólito (Acolyte)
+            periciasAntecedentes["Acólito"] = new List<CheckBox> { chk_religiao, chk_intuicao };
+
+            // Antecedente: Artesão de Guilda (Guild Artisan)
+            periciasAntecedentes["Artesão de Guilda"] = new List<CheckBox> { chk_intuicao, chk_persuasao };
+
+            // Antecedente: Charlatão (Charlatan)
+            periciasAntecedentes["Charlatão"] = new List<CheckBox> { chk_enganacao, chk_prestidigitacao };
+
+            // Antecedente: Criminoso (Criminal)
+            periciasAntecedentes["Criminoso"] = new List<CheckBox> { chk_furtividade, chk_enganacao };
+
+            // Antecedente: Eremita (Hermit)
+            periciasAntecedentes["Eremita"] = new List<CheckBox> { chk_medicina, chk_religiao };
+
+            // Antecedente: Forasteiro (Outlander)
+            periciasAntecedentes["Forasteiro"] = new List<CheckBox> { chk_sobrevivencia, chk_animais };
+
+            // Antecedente: Herói do Povo (Folk Hero)
+            periciasAntecedentes["Herói do Povo"] = new List<CheckBox> { chk_animais, chk_sobrevivencia };
+
+            // Antecedente: Marinheiro (Sailor)
+            periciasAntecedentes["Marinheiro"] = new List<CheckBox> { chk_atletismo, chk_percepcao };
+
+            // Antecedente: Nobre (Noble)
+            periciasAntecedentes["Nobre"] = new List<CheckBox> { chk_historia, chk_persuasao };
+
+            // Antecedente: Órfão (Urchin)
+            periciasAntecedentes["Órfão"] = new List<CheckBox> { chk_furtividade, chk_prestidigitacao };
+
+            // Antecedente: Sábio (Sage)
+            periciasAntecedentes["Sábio"] = new List<CheckBox> { chk_arcanismo, chk_historia };
+
+            // Antecedente: Soldado (Soldier)
+            periciasAntecedentes["Soldado"] = new List<CheckBox> { chk_atletismo, chk_intimidacao };
+
+            // Antecedente: Artista (Entertainer)
+            periciasAntecedentes["Artista"] = new List<CheckBox> { chk_atuacao, chk_acrobacia };
         }
 
         private void LoadFichaData()
@@ -40,12 +86,11 @@ namespace RPG_Fichas
                         {
                             if (reader.Read())
                             {
-                                // Popula os campos do formulário com os dados da ficha
                                 txt_nome_personagem.Text = reader["nomePersonagem"].ToString();
                                 numeric_nivel.Value = Convert.ToInt32(reader["nivel"]);
                                 cbx_classe.SelectedItem = reader["classe"].ToString();
                                 cbx_raca.SelectedItem = reader["raca"].ToString();
-                                txt_antecedente.Text = reader["antecedente"].ToString();
+                                cbx_antecedente.Text = reader["antecedente"].ToString();
                                 txt_alinhamento.Text = reader["alinhamento"].ToString();
                                 txt_HP.Text = reader["pontosVida"].ToString();
                                 txt_CA.Text = reader["ca"].ToString();
@@ -91,7 +136,128 @@ namespace RPG_Fichas
             }
         }
 
+        private void SelecionarPericiasDoAntecedente(string antecedente)
+        {
+            foreach (CheckBox chk in periciasAntecedentes.SelectMany(kvp => kvp.Value))
+            {
+                chk.Checked = false;
+            }
 
+            if (periciasAntecedentes.ContainsKey(antecedente))
+            {
+                foreach (CheckBox chk in periciasAntecedentes[antecedente])
+                {
+                    chk.Checked = true;
+                }
+            }
+        }
+
+        private String AtualizarModificador(TextBox textBox, Label label)
+        {
+            int valorAtributo;
+
+            // Tenta converter o texto para um número inteiro
+            if (int.TryParse(textBox.Text, out valorAtributo))
+            {
+                // Calcula o modificador de habilidade
+                int modificador = (valorAtributo - 10) / 2;
+
+                // Atualiza o rótulo com o modificador
+                label.Text = modificador.ToString();
+
+                return modificador.ToString();
+            }
+            else
+            {
+                // Se a conversão falhar, exibe um valor padrão ou uma mensagem de erro
+                label.Text = "Inválido";
+
+                return "";
+            }
+        }
+
+        private void AtualizarPericia(CheckBox checkBox, Label label, int proficiencia)
+        {
+            // Verifica se a label contém um número válido
+            int valorAtual;
+            if (!int.TryParse(label.Text, out valorAtual))
+            {
+                MessageBox.Show($"Erro: {label.Name} não contém um número válido. Definindo valor atual como 0.");
+                valorAtual = 0; // ou trate de outra forma
+            }
+
+            if (checkBox.Checked)
+            {
+                label.Text = (valorAtual + proficiencia).ToString();
+                MessageBox.Show($"{label.Name} atualizado para {label.Text} (Adicionado {proficiencia})");
+            }
+            else
+            {
+                label.Text = (valorAtual - proficiencia).ToString();
+                MessageBox.Show($"{label.Name} atualizado para {label.Text} (Subtraído {proficiencia})");
+            }
+        }
+        private void AtualizarProficiencia()
+        {
+            // Tente converter o nível de proficiência
+            int nivelDeProficiencia;
+            if (!int.TryParse(lbl_proficiencia.Text, out nivelDeProficiencia))
+            {
+                MessageBox.Show("Erro: lbl_proficiencia não contém um número válido.");
+                return; // Encerra a função se não for um número válido
+            }
+            MessageBox.Show($"Nível de Proficiência: {nivelDeProficiencia}");
+
+            // Lista de todas as checkboxes que você está monitorando
+            List<CheckBox> checkboxes = new List<CheckBox>
+    {
+        chk_forca,
+        chk_destreza,
+        chk_constituicao,
+        chk_inteligencia,
+        chk_sabedoria,
+        chk_carisma,
+        chk_acrobacia,
+        chk_enganacao,
+        chk_intuicao,
+        chk_natureza,
+        chk_arcanismo,
+        chk_furtividade,
+        chk_investigacao,
+        chk_percepcao,
+        chk_religiao,
+        chk_atletismo,
+        chk_historia,
+        chk_animais,
+        chk_persuasao,
+        chk_sobrevivencia,
+        chk_atuacao,
+        chk_intimidacao,
+        chk_medicina,
+        chk_prestidigitacao
+    };
+
+            // Atualiza cada perícia com base nas checkboxes marcadas
+            foreach (var chk in checkboxes)
+            {
+                if (chk.Checked)
+                {
+                    // Atualiza a perícia associada ao checkbox
+                    string nomeSemPrefixo = chk.Name.Replace("chk_", "");
+                    Label lbl = (Label)this.Controls.Find("lbl_" + nomeSemPrefixo, true).FirstOrDefault();
+                    MessageBox.Show($"Atualizando: {lbl} com a proficiência de {nivelDeProficiencia}");
+                    if (lbl != null)
+                    {
+                        MessageBox.Show($"Atualizando: {lbl.Name} com a proficiência de {nivelDeProficiencia}");
+                        AtualizarPericia(chk, lbl, nivelDeProficiencia);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Erro: Label não encontrada para {chk.Name}");
+                    }
+                }
+            }
+        }
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             using (SQLiteConnection connection = new SQLiteConnection(_connectionString))
@@ -106,7 +272,7 @@ namespace RPG_Fichas
                     int nivel = (int)numeric_nivel.Value;
                     string classe = cbx_classe.Text;
                     string raca = cbx_raca.Text;
-                    string antecedente = txt_antecedente.Text;
+                    string antecedente = cbx_antecedente.Text;
                     string alinhamento = txt_alinhamento.Text;
                     int pontosVida = int.Parse(txt_HP.Text);
                     int ca = int.Parse(txt_CA.Text);
@@ -244,7 +410,6 @@ namespace RPG_Fichas
             }
         }*/
 
-
         private void cbx_classe_SelectedIndexChanged(object sender, EventArgs e)
         {
             chk_forca.Checked = false;
@@ -255,51 +420,51 @@ namespace RPG_Fichas
             chk_carisma.Checked = false;
             switch (cbx_classe.SelectedIndex)
             {
-                case 0:
+                case 0: // Bárbaro
                     chk_forca.Checked = true;
                     chk_constituicao.Checked = true;
                     break;
-                case 1:
+                case 1: // Bardo
                     chk_inteligencia.Checked = true;
                     chk_sabedoria.Checked = true;
                     break;
-                case 2:
+                case 2: // Bruxo
                     chk_destreza.Checked = true;
                     chk_inteligencia.Checked = true;
                     break;
-                case 3:
+                case 3: // Clérigo
                     chk_forca.Checked = true;
                     chk_destreza.Checked = true;
                     break;
-                case 4:
+                case 4: // Druida
                     chk_constituicao.Checked = true;
                     chk_carisma.Checked = true;
                     break;
-                case 5:
+                case 5: // Feiticeiro
                     chk_inteligencia.Checked = true;
                     chk_sabedoria.Checked = true;
                     break;
-                case 6:
+                case 6: // Guerreiro
                     chk_carisma.Checked = true;
                     chk_sabedoria.Checked = true;
                     break;
-                case 7:
+                case 7: // Ladino
                     chk_carisma.Checked = true;
                     chk_destreza.Checked = true;
                     break;
-                case 8:
+                case 8: // Mago
                     chk_forca.Checked = true;
                     chk_constituicao.Checked = true;
                     break;
-                case 9:
+                case 9: // Monge
                     chk_sabedoria.Checked = true;
                     chk_carisma.Checked = true;
                     break;
-                case 10:
+                case 10: // Paladino
                     chk_forca.Checked = true;
                     chk_destreza.Checked = true;
                     break;
-                case 11:
+                case 11: // Patrulheiro
                     chk_carisma.Checked = true;
                     chk_sabedoria.Checked = true;
                     break;
@@ -308,29 +473,21 @@ namespace RPG_Fichas
 
         private void numeric_nivel_ValueChanged(object sender, EventArgs e)
         {
-            if (numeric_nivel.Value > 0 && numeric_nivel.Value < 5)
+            string proficienciaAntes = lbl_proficiencia.Text;
+
+            int nivel = (int)numeric_nivel.Value;
+
+            int proficiencia = (nivel < 5) ? 2 :
+                               (nivel < 9) ? 3 :
+                               (nivel < 13) ? 4 :
+                               (nivel < 17) ? 5 :
+                               (nivel <= 20) ? 6 : 0;
+            lbl_proficiencia.Text = $"{proficiencia}";
+            if (proficienciaAntes != Convert.ToString(proficiencia))
             {
-                lbl_proficiencia.Text = "+2";
-            }
-            else if (numeric_nivel.Value >= 5 && numeric_nivel.Value < 9)
-            {
-                lbl_proficiencia.Text = "+3";
-            }
-            else if (numeric_nivel.Value >= 9 && numeric_nivel.Value < 13)
-            {
-                lbl_proficiencia.Text = "+4";
-            }
-            else if (numeric_nivel.Value >= 13 && numeric_nivel.Value < 17)
-            {
-                lbl_proficiencia.Text = "+5";
-            }
-            else if (numeric_nivel.Value >= 17 && numeric_nivel.Value <= 20)
-            {
-                lbl_proficiencia.Text = "+6";
+                AtualizarProficiencia();
             }
         }
-
-
 
         private void cbx_raca_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -359,6 +516,12 @@ namespace RPG_Fichas
                     txt_carisma.Text = $"{Convert.ToInt32(txt_carisma.Text) + 1}";
                     break;
             }
+        }
+
+        private void cbx_antecedente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string antecedenteSelecionado = cbx_antecedente.SelectedItem.ToString();
+            SelecionarPericiasDoAntecedente(antecedenteSelecionado);
         }
 
         private void txt_forca_TextChanged(object sender, EventArgs e)
@@ -428,43 +591,6 @@ namespace RPG_Fichas
             lbl_carisma_salvaguarda.Text = modificador;
         }
 
-        private String AtualizarModificador(TextBox textBox, Label label)
-        {
-            int valorAtributo;
-
-            // Tenta converter o texto para um número inteiro
-            if (int.TryParse(textBox.Text, out valorAtributo))
-            {
-                // Calcula o modificador de habilidade
-                int modificador = (valorAtributo - 10) / 2;
-
-                // Atualiza o rótulo com o modificador
-                label.Text = modificador.ToString();
-
-                return modificador.ToString();
-            }
-            else
-            {
-                // Se a conversão falhar, exibe um valor padrão ou uma mensagem de erro
-                label.Text = "Inválido";
-
-                return "";
-            }
-        }
-
-
-        private void AtualizarPericia(CheckBox checkBox, Label label, int proficiencia)
-        {
-            if (checkBox.Checked)
-            {
-                label.Text = $"{Convert.ToInt32(label.Text) + proficiencia}";
-            }
-            else
-            {
-                label.Text = $"{Convert.ToInt32(label.Text) - proficiencia}";
-            }
-        }
-
         private void chk_forca_CheckedChanged(object sender, EventArgs e)
         {
             AtualizarPericia(chk_forca, lbl_forca_salvaguarda, Convert.ToInt32(lbl_proficiencia.Text));
@@ -497,92 +623,94 @@ namespace RPG_Fichas
 
         private void chk_acrobacia_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_acrobacia, lbl_acrobacia, Convert.ToInt32(lbl_proficiencia.Text));
-        }
+            AtualizarProficiencia();
+                }
 
         private void chk_enganacao_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_enganacao, lbl_enganacao, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_intuicao_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_intuicao, lbl_intuicao, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_natureza_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_natureza, lbl_natureza, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_arcanismo_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_arcanismo, lbl_arcanismo, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_furtividade_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_furtividade, lbl_furtividade, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_investigacao_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_investigacao, lbl_investigacao, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_percepcao_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_percepcao, lbl_percepcao, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_religiao_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_religiao, lbl_religiao, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_atletismo_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_atletismo, lbl_atletismo, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_historia_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_historia, lbl_historia, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_animais_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_animais, lbl_animais, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_persuasao_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_persuasao, lbl_persuasao, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_sobrevivencia_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_sobrevivencia, lbl_sobrevivencia, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_atuacao_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_atuacao, lbl_atuacao, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_intimidacao_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_intimidacao, lbl_intimidacao, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
-        private void chk_medicina_CheckedChanged(object sender, EventArgs e)    
+        private void chk_medicina_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_medicina, lbl_medicina, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
 
         private void chk_prestidigitacao_CheckedChanged(object sender, EventArgs e)
         {
-            AtualizarPericia(chk_prestidigitacao, lbl_prestidifitacao, Convert.ToInt32(lbl_proficiencia.Text));
+            AtualizarProficiencia();
         }
+
+
     }
 }

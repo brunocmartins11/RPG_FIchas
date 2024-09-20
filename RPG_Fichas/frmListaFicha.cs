@@ -7,12 +7,13 @@ namespace RPG_Fichas
 {
     public partial class frmListaFicha : Form
     {
-        private string _connectionString = @"Data Source=C:\Users\labsfiap\Source\Repos\RPG_Fichas\RPG_Fichas\ficha.db;Version=3;";
+        private string _connectionString = @"Data Source=C:\Users\eduar\Source\Repos\RPG_Fichas\RPG_Fichas\ficha.db;Version=3;";
 
         public frmListaFicha()
         {
             InitializeComponent();
             LoadFichas();
+            dgvFichas.CellDoubleClick += dgvFichas_CellDoubleClick;
         }
 
         private void LoadFichas()
@@ -46,7 +47,6 @@ namespace RPG_Fichas
                 {
                     int idFicha = Convert.ToInt32(rowView["idFicha"]);
 
-                    // Cria uma nova instância do formulário de detalhes
                     frmFicha detalhesForm = new frmFicha
                     {
                         FichaId = idFicha // Passa o ID da ficha
@@ -68,19 +68,15 @@ namespace RPG_Fichas
                     {
                         connection.Open();
 
-                        // Obtém a linha selecionada
                         DataGridViewRow selectedRow = dgvFichas.SelectedRows[0];
                         int idFicha = Convert.ToInt32(selectedRow.Cells["idFicha"].Value); // Obtém o ID da coluna "idFicha"
 
-                        // Comando SQL para deletar a ficha
                         string query = "DELETE FROM Ficha WHERE idFicha = @idFicha";
 
                         using (SQLiteCommand command = new SQLiteCommand(query, connection))
                         {
-                            // Adicionando o parâmetro ao comando
                             command.Parameters.AddWithValue("@idFicha", idFicha);
 
-                            // Executando o comando
                             int rowsAffected = command.ExecuteNonQuery();
                             if (rowsAffected > 0)
                             {

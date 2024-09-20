@@ -29,5 +29,11 @@ namespace RPG_Fichas
         {
             this.Close();
         }
+
+        private void btnCadastro_Click(object sender, EventArgs e)
+        {
+            frmCadastro cadastro = new frmCadastro();
+            cadastro.Show();
+        }
     }
 }
